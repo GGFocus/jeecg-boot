@@ -23,7 +23,7 @@ public class MqConfig {
     }
 
     /**
-     * 创建bean
+     * 创建队列
      *
      * @return
      */

@@ -17,12 +17,13 @@ public class MqTest {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    
     /**
      * 测试用例：查询记录
      */
     @Test
     public void testMq() {
-         rabbitTemplate.convertAndSend("ggf-exchange", "ggf-queue", "this is a test");
+        for (int i = 0; i < 100; i++) {
+            rabbitTemplate.convertAndSend("ggf-exchange", "ggf-queue", "message:" + i);
+        }
     }
 }

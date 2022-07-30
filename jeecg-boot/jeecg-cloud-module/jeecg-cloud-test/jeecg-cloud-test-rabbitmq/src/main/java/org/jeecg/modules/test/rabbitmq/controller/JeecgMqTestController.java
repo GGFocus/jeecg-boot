@@ -1,8 +1,9 @@
 package org.jeecg.modules.test.rabbitmq.controller;
 
 
-import javax.servlet.http.HttpServletRequest;
-
+import cn.hutool.core.util.RandomUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.jeecg.boot.starter.rabbitmq.client.RabbitMqClient;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.base.BaseMap;
@@ -12,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.hutool.core.util.RandomUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
