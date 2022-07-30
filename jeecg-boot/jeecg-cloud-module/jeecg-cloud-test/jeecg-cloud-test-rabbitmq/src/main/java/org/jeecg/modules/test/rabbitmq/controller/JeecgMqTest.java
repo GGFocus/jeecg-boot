@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.hutool.core.util.RandomUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 
 /**
@@ -23,14 +25,15 @@ import io.swagger.annotations.ApiOperation;
  * @date: 2022/04/21
  */
 
-@RestController
-@RequestMapping("/sys/test")
-@Api(tags = "【微服务】MQ单元测试")
+//@RestController
+//@RequestMapping("/sys/test")
+//@Api(tags = "【微服务】MQ单元测试")
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,classes = JeecgSystemApplication.class)
 public class JeecgMqTestController {
 
     @Autowired
     private RabbitMqClient rabbitMqClient;
-
 
     /**
      * 测试方法：快速点击发送MQ消息
@@ -39,19 +42,17 @@ public class JeecgMqTestController {
      * @param req
      * @return
      */
-    @GetMapping(value = "/rabbitmq")
-    @ApiOperation(value = "测试rabbitmq", notes = "测试rabbitmq")
-    public Result<?> rabbitMqClientTest(HttpServletRequest req) {
+    @Test
+    public void rabbitMqClientTest(HttpServletRequest req) {
         //rabbitmq消息队列测试
         BaseMap map = new BaseMap();
         map.put("orderId", RandomUtil.randomNumbers(10));
         rabbitMqClient.sendMessage(CloudConstant.MQ_JEECG_PLACE_ORDER, map);
         rabbitMqClient.sendMessage(CloudConstant.MQ_JEECG_PLACE_ORDER_TIME, map,10);
-        return Result.OK("MQ发送消息成功");
+        System.out.println("MQ发送消息成功");
     }
 
-    @GetMapping(value = "/rabbitmq2")
-    @ApiOperation(value = "rabbitmq消息总线测试", notes = "rabbitmq消息总线测试")
+
     public Result<?> rabbitmq2(HttpServletRequest req) {
 
         //rabbitmq消息总线测试
