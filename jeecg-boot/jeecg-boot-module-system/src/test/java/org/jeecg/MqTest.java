@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 系统用户单元测试
  */
@@ -24,6 +27,13 @@ public class MqTest {
     public void testMq() {
         for (int i = 0; i < 100; i++) {
             rabbitTemplate.convertAndSend("ggf-exchange", "ggf-queue", "message:" + i);
+        }
+        Map map = new HashMap();
+
+        System.out.println("this ");
+
+        if (true) {
+
         }
     }
 }
